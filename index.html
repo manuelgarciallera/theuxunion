@@ -1,16 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheuxUnion · MVP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TheuxUnion | Acceso por méritos</title>
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <div class="brand-badge">UX</div>
+            </div>
 
-    <H1>TheuxUnion</H1>
-    <p>MVP en construcción</p>
+            <div class="actions">
+                <button class="iconbtn" type="button" aria-label="Cambiar tema" onclick="toggleTheme()">☾/☀</button>
+                <a class="iconbtn" href="discover.html" title="Ver demo">Demo</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero hero-grid">
+            <div>
+                <p class="kicker">Acceso meritocrático, sin humo.</p>
+                <h1 class="h1">Bienvenido a <span class="accent">TheuxUnion</span></h1>
+                <p class="lead">
+                    Una red de nodos entre diseñadores y empresas donde el ranking se construye con experiencia,
+                    formación y portfolio verificable. Entra por méritos, crece por impacto.
+                </p>
+
+                <div class="row">
+                    <a class="btn btn-primary" href="access.html">Solicitar acceso</a>
+                    <a class="btn btn-secondary" href="discover.html">Ver demo</a>
+                </div>
+
+                <div class="notice">
+                    Este MVP simula el acceso y algunas interacciones para una demo de incubadora.
+                    No hay backend todavía.
+                </div>
+            </div>
+
+            <aside class="card">
+                <p class="kicker">¿Qué se valida en este MVP?</p>
+                <ul style="margin:0; padding-left: 18px; color: var(--muted);">
+                    <li>Que el acceso por méritos se entiende y se percibe valioso.</li>
+                    <li>Que el usuario identifica el valor en “Descubrir” y “Nodos”.</li>
+                    <li>Que la narrativa es clara en menos de 60 segundos.</li>
+                </ul>
+            </aside>
+        </section>
+    </main>
 
     <script src="js/main.js"></script>
 </body>

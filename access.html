@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TheuxUnion | Solicitud de acceso</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <a class="brand-badge" href="index.html" title="Inicio">UX</a>
+            </div>
+
+            <div class="actions">
+                <button class="iconbtn" type="button" aria-label="Cambiar tema" onclick="toggleTheme()">☾/☀</button>
+                <a class="iconbtn" href="discover.html" title="Ver demo">Demo</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <p class="kicker">Acceso por revisión</p>
+            <h1 class="h1">Solicitar acceso</h1>
+            <p class="lead">Cuanto más clara sea la evidencia, más rápido te damos entrada.</p>
+
+            <div class="card">
+                <form data-access-form>
+                    <label for="name">Nombre</label>
+                    <input class="input" id="name" name="name" placeholder="Tu nombre" required />
+
+                    <label for="email">Email</label>
+                    <input class="input" id="email" name="email" type="email" placeholder="tucorreo@email.com"
+                        required />
+
+                    <label for="evidence">Evidencia principal</label>
+                    <select id="evidence" name="evidence">
+                        <option value="degree">Título oficial</option>
+                        <option value="experience">Años de experiencia</option>
+                        <option value="portfolio">Portfolio / casos</option>
+                    </select>
+
+                    <label style="margin-top:14px;">
+                        <input type="checkbox" required />
+                        <span style="color: var(--muted);">Acepto revisión manual de mi solicitud.</span>
+                    </label>
+
+                    <div style="height: 12px;"></div>
+
+                    <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+                    <a class="btn btn-secondary" href="index.html" style="margin-top:10px;">Volver</a>
+                </form>
+
+                <div class="notice hidden" data-access-success>
+                    ✅ Solicitud recibida. Tu acceso está <strong>en revisión</strong>.
+                    Mientras tanto puedes entrar a la demo.
+                    <div style="height: 12px;"></div>
+                    <a class="btn btn-primary" href="discover.html">Entrar a la demo</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
