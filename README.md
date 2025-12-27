@@ -37,3 +37,5 @@ Legacy (initial MVP):
 ---
 
 *This repository documents the evolution of the project from a vanilla prototype to a scalable app structure.*
+
+<!-- trigger CI -->
