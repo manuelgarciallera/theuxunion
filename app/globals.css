@@ -233,7 +233,6 @@ html[data-theme="light"] .tux-navlink:focus-visible {
    HOVER SYSTEM (dark base)
    ========================= */
 
-/* Base glass hover: idioma, login, theme toggle */
 .tux-hover {
   transition:
     background 160ms ease,
@@ -255,7 +254,6 @@ html[data-theme="light"] .tux-navlink:focus-visible {
   outline: none;
 }
 
-/* Registro (gradiente cyan): solo borde + glow */
 .tux-hover-border {
   transition:
     border-color 160ms ease,
@@ -275,7 +273,6 @@ html[data-theme="light"] .tux-navlink:focus-visible {
   outline: none;
 }
 
-/* Crear cuenta (magenta): borde + glow */
 .tux-hover-border-magenta {
   transition:
     border-color 160ms ease,
@@ -336,7 +333,6 @@ html[data-theme="light"] .tux-hover-border-magenta:focus-visible {
 
 /* =========================
    REGISTRO (navbar) más vibrante en light
-   Usa esta clase extra en el <a> de Registro: "tux-register"
    ========================= */
 
 html[data-theme="light"] .tux-register {
@@ -440,18 +436,24 @@ html[data-theme="light"] .tux-bridge::before {
   display: inline-flex;
 }
 
+/* ✅ Compacto + preparado para 3 letras (DEU/ENG/ESP) */
 .tux-lang-btn {
   height: 36px;
-  width: 84px;
+  width: 66px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 8px;
+  gap: 6px;
 
   border-radius: 12px;
   border: 1px solid var(--border-soft);
   background: var(--glass-2);
   color: var(--text-primary);
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 /* Menú desplegable */
@@ -533,7 +535,6 @@ header.navbar {
   z-index: 999;
 }
 
-/* Superficie: más oscura y más “plana”, sin bordes */
 header.navbar .navbar-surface {
   position: relative;
   height: var(--navbar-h);
@@ -553,7 +554,6 @@ header.navbar .navbar-surface {
     -webkit-backdrop-filter 220ms ease;
 }
 
-/* Halo suave (muy sutil) */
 header.navbar .navbar-surface::before {
   content: "";
   position: absolute;
@@ -583,7 +583,6 @@ header.navbar .navbar-surface::before {
     filter 220ms ease;
 }
 
-/* Compact (al bajar): subimos opacidad + blur */
 header.navbar.is-compact .navbar-surface {
   background: linear-gradient(180deg,
       rgba(5, 11, 26, 0.97) 0%,
@@ -605,18 +604,21 @@ header.navbar.is-compact .navbar-surface::before {
 /* Inner */
 header.navbar .navbar-inner {
   height: var(--navbar-h);
+  min-width: 0;
+  /* ✅ evita overflow en móviles */
 }
 
-/* Brand layout */
+/* Brand layout (✅ FIX móvil: min-width 0) */
 header.navbar .navbar-brand {
   display: flex;
   align-items: center;
   gap: 12px;
-  min-width: 240px;
+  min-width: 0;
+  flex: 0 1 auto;
 }
 
 /* =====================================================
-   ORBE "PERLA" (Réplica exacta de captura)
+   ORBE "PERLA"
    ===================================================== */
 
 header.navbar .navbar-logo {
@@ -642,7 +644,7 @@ header.navbar .navbar-logo {
       rgba(150, 50, 250, 0.3));
 
   box-shadow:
-    inset -2px -2px 6px rgba(255, 255, 255, 0.2),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.2 .2),
     0 0 10px rgba(0, 255, 255, 0.3),
     0 0 15px rgba(255, 0, 200, 0.2);
 
@@ -669,7 +671,6 @@ header.navbar .navbar-brand-text {
   transition: opacity 220ms ease, transform 220ms ease, max-width 220ms ease;
 }
 
-/* Scroll down: ocultar texto */
 header.navbar.is-compact .navbar-brand-text,
 header.navbar .navbar-brand-text.is-hidden {
   opacity: 0;
@@ -695,7 +696,7 @@ html[data-theme="light"] header.navbar.is-compact .navbar-surface {
 }
 
 /* =====================================================
-   BRAND HOVERS (Navbar) · FORZADO
+   BRAND HOVERS (Navbar)
    ===================================================== */
 
 header.navbar a.tux-brand {
@@ -706,13 +707,11 @@ header.navbar a.tux-brand {
   cursor: pointer;
 }
 
-/* Asegura transición suave */
 header.navbar a.tux-brand .navbar-logo {
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
   transform-origin: center;
 }
 
-/* ✅ Hover del ORBE: escala + glow (gana a is-compact) */
 header.navbar a.tux-brand:hover .navbar-logo,
 header.navbar a.tux-brand:focus-visible .navbar-logo {
   transform: scale(1.08) !important;
@@ -723,7 +722,6 @@ header.navbar a.tux-brand:focus-visible .navbar-logo {
   filter: saturate(1.6) brightness(1.12);
 }
 
-/* ✅ Hover del TEXTO: solo color */
 header.navbar a.tux-brand:hover .navbar-title,
 header.navbar a.tux-brand:focus-visible .navbar-title {
   color: var(--brand-electric) !important;
@@ -734,7 +732,31 @@ header.navbar a.tux-brand:focus-visible .navbar-tagline {
   color: var(--brand-neon) !important;
 }
 
-/* Bonus: accesibilidad, que no salga el foco feo */
 header.navbar a.tux-brand:focus-visible {
   outline: none;
+}
+
+/* =========================
+   MOBILE TIGHTEN (muy pequeños)
+   ========================= */
+
+@media (max-width: 420px) {
+  header.navbar .navbar-inner {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  header.navbar .navbar-brand {
+    gap: 10px;
+  }
+
+  /* Idioma aún un pelín más compacto */
+  .tux-lang-btn {
+    width: 62px;
+  }
+
+  /* Controles algo más pegados */
+  header.navbar .navbar-controls {
+    gap: 8px;
+  }
 }

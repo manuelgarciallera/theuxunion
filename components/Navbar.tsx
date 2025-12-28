@@ -19,7 +19,6 @@ export default function Navbar() {
     }, []);
 
     function handleHomeClick(e: React.MouseEvent) {
-        // Si ya estás en "/", no hay navegación real; forzamos ir arriba.
         if (pathname === "/") {
             e.preventDefault();
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -30,7 +29,7 @@ export default function Navbar() {
         <header className={`navbar ${compact ? "is-compact" : ""}`}>
             <div className="navbar-surface">
                 <div className="navbar-inner mx-auto flex w-full max-w-6xl items-center justify-between px-5">
-                    {/* ✅ Brand entero clickable a Home */}
+                    {/* ✅ Brand clickable a Home */}
                     <Link
                         href="/"
                         onClick={handleHomeClick}
@@ -38,7 +37,9 @@ export default function Navbar() {
                         aria-label="TheuxUnion · Inicio"
                     >
                         <div className="navbar-logo" />
-                        <div className={`navbar-brand-text leading-tight ${compact ? "is-hidden" : ""}`}>
+
+                        {/* ✅ En móvil ocultamos el texto para liberar espacio */}
+                        <div className={`navbar-brand-text leading-tight ${compact ? "is-hidden" : ""} hidden md:grid`}>
                             <div className="navbar-title text-sm font-semibold text-[color:var(--text-primary)]">
                                 TheuxUnion
                             </div>
@@ -53,21 +54,25 @@ export default function Navbar() {
                         <Link href="/" onClick={handleHomeClick} className="tux-navlink">
                             Home
                         </Link>
-
                         <a href="#connect" className="tux-navlink">
                             Conectar
                         </a>
-
                         <a href="#about" className="tux-navlink">
                             Quiénes somos
                         </a>
                     </nav>
 
-                    {/* Right controls */}
-                    <div className="flex items-center gap-3">
-                        <LanguageSelect />
-                        <ThemeToggle />
+                    {/* ✅ Right controls: siempre visibles en móvil (Idioma + Theme + Burger) */}
+                    <div className="navbar-controls flex items-center gap-2">
+                        <div className="shrink-0">
+                            <LanguageSelect />
+                        </div>
 
+                        <div className="shrink-0">
+                            <ThemeToggle />
+                        </div>
+
+                        {/* Desktop only */}
                         <a
                             href="#login"
                             className="tux-hover hidden h-9 items-center justify-center rounded-xl border px-4 text-sm transition md:inline-flex"
@@ -80,7 +85,6 @@ export default function Navbar() {
                             Login
                         </a>
 
-                        {/* ✅ Registro -> /register */}
                         <Link
                             href="/register"
                             className="tux-hover-border tux-register hidden h-9 items-center justify-center rounded-xl border px-4 text-sm font-semibold transition md:inline-flex"
@@ -94,7 +98,10 @@ export default function Navbar() {
                             Registro
                         </Link>
 
-                        <MobileMenu />
+                        {/* ✅ Burger SIEMPRE visible en móvil */}
+                        <div className="shrink-0 md:hidden">
+                            <MobileMenu />
+                        </div>
                     </div>
                 </div>
             </div>
