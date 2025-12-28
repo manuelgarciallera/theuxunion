@@ -36,11 +36,11 @@ export default function RegisterPage() {
     const [submitted, setSubmitted] = useState(false);
 
     const errors = useMemo(() => {
-        const e: Record<string, string> = {};
+        const e: Partial<Record<keyof FormState, string>> = {};
 
         if (!form.fullName.trim()) e.fullName = "Indica tu nombre.";
         if (!form.email.trim()) e.email = "El email es obligatorio.";
-        else if (!/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Introduce un email válido.";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Introduce un email válido.";
 
         if (!form.password) e.password = "La contraseña es obligatoria.";
         else if (form.password.length < 8) e.password = "Mínimo 8 caracteres.";
@@ -49,9 +49,17 @@ export default function RegisterPage() {
 
         if (!form.portfolio.trim()) e.portfolio = "El enlace al portfolio es obligatorio.";
         else {
+            const raw = form.portfolio.trim();
             try {
-                const url = new URL(form.portfolio.startsWith("http") ? form.portfolio : `https://${form.portfolio}`);
-                if (!url.hostname.includes(".")) e.portfolio = "El enlace no parece válido.";
+                const hasScheme = /^https?:\/\//i.test(raw);
+                const normalized = hasScheme ? raw : `https://${raw}`;
+                const url = new URL(normalized);
+                // Accept domains with dots, localhost, or any valid hostname parsed by URL
+                if (!url.hostname || url.hostname.length === 0) {
+                    e.portfolio = "El enlace no parece válido.";
+                } else if (!url.hostname.includes(".") && url.hostname !== "localhost") {
+                    e.portfolio = "El enlace no parece válido.";
+                }
             } catch {
                 e.portfolio = "Introduce una URL válida (ej: tumarca.com).";
             }
@@ -60,7 +68,7 @@ export default function RegisterPage() {
         if (!form.terms) e.terms = "Debes aceptar los términos para continuar.";
 
         return e;
-    }, [form, form.email, form.fullName, form.password, form.portfolio, form.terms, form.university]);
+    }, [form]);
 
     const isValid = Object.keys(errors).length === 0;
 
@@ -80,7 +88,7 @@ export default function RegisterPage() {
     }
 
     function showError(name: keyof FormState) {
-        return (touched[name as string] || submitted) && errors[name as string];
+        return (touched[name as string] || submitted) && errors[name];
     }
 
     function handleSubmit(e: React.FormEvent) {
@@ -88,7 +96,14 @@ export default function RegisterPage() {
         setSubmitted(true);
         if (!isValid) return;
 
-        console.log("REGISTER_PAYLOAD", form);
+        if (process.env.NODE_ENV !== "production") {
+            // Log sanitized version without sensitive data
+            console.log("REGISTER_PAYLOAD", {
+                ...form,
+                password: "[REDACTED]"
+            });
+        }
+        // TODO: Replace with toast notification system
         alert("✅ Solicitud enviada (simulación).");
     }
 
@@ -280,6 +295,8 @@ export default function RegisterPage() {
                                         color: isValid ? "var(--bg-main)" : "color-mix(in srgb, var(--bg-main) 55%, transparent)",
                                         cursor: isValid ? "pointer" : "not-allowed",
                                     }}
+                                    disabled={!isValid}
+                                    aria-disabled={!isValid}
                                 >
                                     Crear cuenta
                                 </button>

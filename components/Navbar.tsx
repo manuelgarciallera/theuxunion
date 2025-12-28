@@ -19,7 +19,7 @@ export default function Navbar() {
     }, []);
 
     function handleHomeClick(e: React.MouseEvent) {
-        // Si ya estás en "/", no hay navegación real; forzamos ir arriba.
+        // If already on "/", prevent navigation and scroll to top
         if (pathname === "/") {
             e.preventDefault();
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
