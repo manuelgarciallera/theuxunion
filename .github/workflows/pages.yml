@@ -30,13 +30,13 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Build (Next export output)
+      - name: Build
         run: npm run build
 
-      - name: Verify out/ exists
+      - name: Ensure out exists
         run: |
           ls -la
-          ls -la out || (echo "❌ out/ folder not found. Check next.config output:'export' and that build generates out/" && exit 1)
+          ls -la out || (echo "❌ out/ no existe. Revisa next.config.ts (output:'export')" && exit 1)
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
