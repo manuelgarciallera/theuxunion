@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import Hero from "@/components/Hero";
 import Trusted from "@/components/Trusted";
 import Footer from "@/components/Footer";
