@@ -13,9 +13,6 @@ type Pill = {
   image: string;
 };
 
-// ✅ Para que funcione en local (/) y en GitHub Pages (/theuxunion)
-const basePath = process.env.NODE_ENV === "production" ? "/theuxunion" : "";
-
 const pills: Pill[] = [
   {
     key: "merit",
@@ -23,7 +20,7 @@ const pills: Pill[] = [
     title: "Acceso por méritos, no por postureo.",
     desc: "Validamos formación, experiencia y portfolio verificable.",
     accent: "rgba(255, 59, 200, 0.20)",
-    image: `${basePath}/hero/merit.png`,
+    image: "/hero/merit.png",
   },
   {
     key: "nodes",
@@ -31,7 +28,7 @@ const pills: Pill[] = [
     title: "Conexiones con señal real.",
     desc: "Empresas y talento se encuentran por encaje, no por ruido.",
     accent: "rgba(61, 242, 255, 0.18)",
-    image: `${basePath}/hero/nodes.png`,
+    image: "/hero/nodes.png",
   },
   {
     key: "portfolios",
@@ -39,7 +36,7 @@ const pills: Pill[] = [
     title: "Tu trabajo habla por ti.",
     desc: "Ranking que se mueve por impacto y consistencia.",
     accent: "rgba(76, 201, 240, 0.18)",
-    image: `${basePath}/hero/portfolios.png`,
+    image: "/hero/portfolios.png",
   },
 ];
 
