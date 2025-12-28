@@ -4,33 +4,48 @@ import { useMemo, useState } from "react";
 
 type PillKey = "merit" | "nodes" | "portfolios";
 
-const pills = [
+type Pill = {
+    key: PillKey;
+    label: string;
+    title: string;
+    desc: string;
+    accent: string;
+    image: string;
+};
+
+const pills: Pill[] = [
     {
-        key: "merit" as const,
+        key: "merit",
         label: "Merit Gate",
         title: "Acceso por méritos, no por postureo.",
         desc: "Validamos formación, experiencia y portfolio verificable.",
         accent: "rgba(255, 59, 200, 0.20)",
+        image: "/hero/merit.png.jpg",
     },
     {
-        key: "nodes" as const,
+        key: "nodes",
         label: "Nodos",
         title: "Conexiones con señal real.",
         desc: "Empresas y talento se encuentran por encaje, no por ruido.",
         accent: "rgba(61, 242, 255, 0.18)",
+        image: "/hero/nodes.png.jpg",
     },
     {
-        key: "portfolios" as const,
+        key: "portfolios",
         label: "Portfolios",
         title: "Tu trabajo habla por ti.",
         desc: "Ranking que se mueve por impacto y consistencia.",
         accent: "rgba(76, 201, 240, 0.18)",
+        image: "/hero/portfolios.png.jpg",
     },
 ];
 
 export default function Hero() {
     const [active, setActive] = useState<PillKey>("merit");
-    const current = useMemo(() => pills.find((p) => p.key === active)!, [active]);
+    const current = useMemo(
+        () => pills.find((p) => p.key === active)!,
+        [active]
+    );
 
     return (
         <section id="home" className="relative hero-fade">
@@ -45,7 +60,8 @@ export default function Hero() {
                     </div>
 
                     <h1 className="h1-calm mt-5 max-w-[20ch] text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-                        <span className="text-[var(--brand-electric)]">Cambiamos</span> la forma{" "}
+                        <span className="text-[var(--brand-electric)]">Cambiamos</span> la
+                        forma{" "}
                         <span style={{ color: "var(--text-primary)" }}>en la que</span>{" "}
                         <span className="text-[var(--brand-electric)]">diseñadores</span> y{" "}
                         <span className="text-[var(--brand-electric)]">empresas</span>{" "}
@@ -61,7 +77,6 @@ export default function Hero() {
                         impacto.
                     </p>
 
-                    {/* CTAs */}
                     <div className="mt-10 flex items-center gap-4">
                         <a
                             href="#register"
@@ -78,7 +93,7 @@ export default function Hero() {
 
                         <a
                             href="#demo"
-                            className="tux-cta-secondary inline-flex items-center justify-center rounded-xl border px-6 py-3 text-sm font-semibold"
+                            className="inline-flex items-center justify-center rounded-xl border px-6 py-3 text-sm font-semibold"
                             style={{
                                 borderColor: "var(--border-soft)",
                                 background: "var(--glass-2)",
@@ -93,47 +108,78 @@ export default function Hero() {
                 {/* RIGHT */}
                 <div className="md:justify-self-end">
                     <div
-                        className="w-[440px] max-w-full h-[470px] rounded-[26px] border p-6"
+                        className="relative w-[440px] max-w-full h-[470px] rounded-[26px] border overflow-hidden"
                         style={{
                             borderColor: "var(--border-soft)",
-                            background:
-                                "linear-gradient(135deg, rgba(181,23,158,0.18) 0%, rgba(76,201,240,0.14) 45%, rgba(61,242,255,0.12) 100%)",
                             boxShadow:
                                 "0 0 0 1px rgba(255,255,255,0.06), 0 25px 70px rgba(0,0,0,0.20)",
                         }}
                     >
-                        <div className="mt-[260px] max-w-[66%]">
-                            <div
-                                className="text-xl font-semibold leading-snug"
-                                style={{ color: "var(--text-primary)" }}
-                            >
-                                {current.title}
-                            </div>
-                            <div
-                                className="mt-2 text-base leading-snug"
-                                style={{ color: "var(--text-secondary)" }}
-                            >
-                                {current.desc}
+                        {/* IMAGEN */}
+                        <div
+                            className="absolute inset-0"
+                            style={{
+                                backgroundImage: `url(${current.image})`,
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                                opacity: 0.97,
+                                filter: "contrast(1.08) saturate(1.06)",
+                                transform: "scale(1.03)",
+                            }}
+                        />
+
+                        {/* OSCURECIDO SOLO INFERIOR */}
+                        <div
+                            className="absolute inset-0"
+                            style={{
+                                background:
+                                    "linear-gradient(180deg, rgba(5,11,26,0.00) 0%, rgba(5,11,26,0.15) 60%, rgba(5,11,26,0.55) 85%, rgba(5,11,26,0.88) 100%)",
+                            }}
+                        />
+
+                        {/* COLOR BLEND SUAVE */}
+                        <div
+                            className="absolute inset-0"
+                            style={{
+                                background:
+                                    "linear-gradient(135deg, rgba(181,23,158,0.18) 0%, rgba(76,201,240,0.14) 45%, rgba(61,242,255,0.14) 100%)",
+                                mixBlendMode: "soft-light",
+                                opacity: 0.45,
+                            }}
+                        />
+
+                        {/* TEXTO ABAJO DEL TODO */}
+                        <div className="relative h-full flex flex-col justify-end p-6 pb-7">
+                            <div className="max-w-[78%]">
+                                <div
+                                    className="text-xl font-semibold leading-snug"
+                                    style={{ color: "var(--text-primary)" }}
+                                >
+                                    {current.title}
+                                </div>
+                                <div
+                                    className="mt-2 text-base leading-snug"
+                                    style={{ color: "var(--text-secondary)" }}
+                                >
+                                    {current.desc}
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     {/* PILLS */}
                     <div className="mt-5 flex flex-wrap gap-3">
-                        {pills.map((p) => {
-                            const isActive = p.key === active;
-                            return (
-                                <button
-                                    key={p.key}
-                                    type="button"
-                                    onClick={() => setActive(p.key)}
-                                    className={`tux-pill rounded-full px-4 py-2 text-sm ${isActive ? "is-active" : ""
-                                        }`}
-                                >
-                                    {p.label}
-                                </button>
-                            );
-                        })}
+                        {pills.map((p) => (
+                            <button
+                                key={p.key}
+                                type="button"
+                                onClick={() => setActive(p.key)}
+                                className={`tux-pill rounded-full px-4 py-2 text-sm ${p.key === active ? "is-active" : ""
+                                    }`}
+                            >
+                                {p.label}
+                            </button>
+                        ))}
                     </div>
 
                     {/* TIP */}
@@ -145,13 +191,9 @@ export default function Hero() {
                             color: "var(--text-secondary)",
                         }}
                     >
-                        <span
-                            style={{ color: "var(--text-primary)", fontWeight: 600 }}
-                        >
-                            Tip:
-                        </span>{" "}
-                        sube tu portfolio y valida hitos. Tu ranking se mueve por calidad,
-                        no por postureo.
+                        <strong style={{ color: "var(--text-primary)" }}>Tip:</strong>{" "}
+                        sube tu portfolio y valida hitos. Tu ranking se mueve por calidad, no
+                        por postureo.
                     </div>
                 </div>
             </div>
