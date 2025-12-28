@@ -40,7 +40,7 @@ export default function RegisterPage() {
 
         if (!form.fullName.trim()) e.fullName = "Indica tu nombre.";
         if (!form.email.trim()) e.email = "El email es obligatorio.";
-        else if (!/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Introduce un email válido.";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Introduce un email válido.";
 
         if (!form.password) e.password = "La contraseña es obligatoria.";
         else if (form.password.length < 8) e.password = "Mínimo 8 caracteres.";
@@ -50,17 +50,17 @@ export default function RegisterPage() {
         if (!form.portfolio.trim()) e.portfolio = "El enlace al portfolio es obligatorio.";
         else {
             try {
-                const url = new URL(form.portfolio.startsWith("http") ? form.portfolio : `https://${form.portfolio}`);
+                const url = new URL(form.portfolio);
                 if (!url.hostname.includes(".")) e.portfolio = "El enlace no parece válido.";
             } catch {
-                e.portfolio = "Introduce una URL válida (ej: tumarca.com).";
+                e.portfolio = "Introduce una URL válida, incluyendo http:// o https:// (ej: https://tumarca.com).";
             }
         }
 
         if (!form.terms) e.terms = "Debes aceptar los términos para continuar.";
 
         return e;
-    }, [form, form.email, form.fullName, form.password, form.portfolio, form.terms, form.university]);
+    }, [form]);
 
     const isValid = Object.keys(errors).length === 0;
 
@@ -89,7 +89,7 @@ export default function RegisterPage() {
         if (!isValid) return;
 
         console.log("REGISTER_PAYLOAD", form);
-        alert("✅ Solicitud enviada (simulación).");
+        console.info("✅ Solicitud enviada (simulación).");
     }
 
     return (
@@ -254,7 +254,8 @@ export default function RegisterPage() {
                                 <label className="flex items-start gap-3">
                                     <input
                                         type="checkbox"
-                                        className="mt-1 h-4 w-4 accent-black"
+                                        className="mt-1 h-4 w-4"
+                                        style={{ accentColor: "var(--brand-magenta)" }}
                                         checked={form.terms}
                                         onChange={(e) => setField("terms", e.target.checked)}
                                         onBlur={() => onBlur("terms")}

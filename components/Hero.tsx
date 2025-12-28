@@ -91,7 +91,6 @@ export default function Hero() {
               Crear cuenta
             </Link>
 
-            {/* De momento, lo dejamos como anchor interno */}
             <a
               href="#demo"
               className="inline-flex items-center justify-center rounded-xl border px-6 py-3 text-sm font-semibold"
