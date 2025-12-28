@@ -1,71 +1,102 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TheuxUnion | Solicitud de acceso</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <title>TheuxUnion | Acceso por méritos</title>
+    <meta name="description" content="Solicitud de acceso a TheuxUnion: merit gate." />
+    <link rel="stylesheet" href="./css/style.css" />
 </head>
 
 <body>
+    <div class="bg-aurora" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+
     <header class="topbar">
-        <div class="topbar-inner">
-            <div class="brand">
-                <a class="brand-badge" href="index.html" title="Inicio">UX</a>
-            </div>
+        <div class="topbar-inner container">
+            <a class="brand" href="./index.html" aria-label="TheuxUnion">
+                <span class="brand-badge brand-badge--logo" aria-hidden="true">
+                    <img src="./assets/logo1.svg" alt="TheuxUnion logo">
+                </span>
+            </a>
 
             <div class="actions">
-                <button class="iconbtn" type="button" aria-label="Cambiar tema" onclick="toggleTheme()">☾/☀</button>
-                <a class="iconbtn" href="discover.html" title="Ver demo">Demo</a>
+                <button class="theme-toggle" type="button" aria-label="Cambiar tema" onclick="toggleTheme()">
+                    <span class="tt-icon tt-sun" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                            <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2" />
+                            <path
+                                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </span>
+                    <span class="tt-icon tt-moon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                            <path d="M21 13.2A7.5 7.5 0 0 1 10.8 3a6.6 6.6 0 1 0 10.2 10.2Z" stroke="currentColor"
+                                stroke-width="2" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </button>
+
+                <a class="btn btn-ghost" href="./index.html">← Volver</a>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <section class="hero">
-            <p class="kicker">Acceso por revisión</p>
-            <h1 class="h1">Solicitar acceso</h1>
-            <p class="lead">Cuanto más clara sea la evidencia, más rápido te damos entrada.</p>
-
-            <div class="card">
-                <form data-access-form>
-                    <label for="name">Nombre</label>
-                    <input class="input" id="name" name="name" placeholder="Tu nombre" required />
-
-                    <label for="email">Email</label>
-                    <input class="input" id="email" name="email" type="email" placeholder="tucorreo@email.com"
-                        required />
-
-                    <label for="evidence">Evidencia principal</label>
-                    <select id="evidence" name="evidence">
-                        <option value="degree">Título oficial</option>
-                        <option value="experience">Años de experiencia</option>
-                        <option value="portfolio">Portfolio / casos</option>
-                    </select>
-
-                    <label style="margin-top:14px;">
-                        <input type="checkbox" required />
-                        <span style="color: var(--muted);">Acepto revisión manual de mi solicitud.</span>
-                    </label>
-
-                    <div style="height: 12px;"></div>
-
-                    <button class="btn btn-primary" type="submit">Enviar solicitud</button>
-                    <a class="btn btn-secondary" href="index.html" style="margin-top:10px;">Volver</a>
-                </form>
-
-                <div class="notice hidden" data-access-success>
-                    ✅ Solicitud recibida. Tu acceso está <strong>en revisión</strong>.
-                    Mientras tanto puedes entrar a la demo.
-                    <div style="height: 12px;"></div>
-                    <a class="btn btn-primary" href="discover.html">Entrar a la demo</a>
-                </div>
+        <section class="section card gate">
+            <div class="gate-head">
+                <h1 class="h2">Acceso meritocrático</h1>
+                <p class="muted">
+                    TheuxUnion no bloquea con oscuridad: te decimos qué cumples y qué te falta.
+                </p>
             </div>
+
+            <form class="form" id="meritForm">
+                <div class="form-row">
+                    <label class="label" for="fullName">Nombre</label>
+                    <input class="input" id="fullName" name="fullName" type="text" placeholder="Manuel García-Llera"
+                        required>
+                </div>
+
+                <div class="form-row">
+                    <label class="label" for="email">Email</label>
+                    <input class="input" id="email" name="email" type="email" placeholder="manuelgarcia@gmail.com"
+                        required>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-row">
+                        <label class="label" for="years">Años de experiencia</label>
+                        <input class="input" id="years" name="years" type="number" min="0" max="40" value="0" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label class="label" for="degree">Título oficial (sí/no)</label>
+                        <select class="select" id="degree" name="degree" required>
+                            <option value="yes">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label class="label" for="portfolio">Portfolio (URL)</label>
+                    <input class="input" id="portfolio" name="portfolio" type="url" placeholder="https://..." required>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" type="submit">Verificar méritos</button>
+                    <a class="btn btn-secondary" href="./discover.html">Entrar a demo</a>
+                </div>
+
+                <div class="gate-result" id="gateResult" aria-live="polite"></div>
+            </form>
         </section>
     </main>
 
-    <script src="js/main.js"></script>
+    <script src="./js/main.js" defer></script>
 </body>
 
 </html>
