@@ -27,11 +27,16 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm ci
 
-      - name: Build (static export)
+      - name: Build
         run: npm run build
+
+      - name: Ensure out exists
+        run: |
+          ls -la
+          ls -la out || (echo "❌ out/ no existe. Revisa next.config.ts (output:'export')" && exit 1)
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
