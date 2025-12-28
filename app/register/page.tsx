@@ -51,10 +51,13 @@ export default function RegisterPage() {
         else {
             const raw = form.portfolio.trim();
             try {
-                const hasScheme = /^[a-zA-Z][a-zA-Z\d+\-.]*:\/\//.test(raw);
+                const hasScheme = /^https?:\/\//i.test(raw);
                 const normalized = hasScheme ? raw : `https://${raw}`;
                 const url = new URL(normalized);
-                if (!url.hostname.includes(".")) e.portfolio = "El enlace no parece válido.";
+                // Accept localhost, IP addresses, or domains with dots
+                if (!url.hostname.includes(".") && url.hostname !== "localhost" && !/^\d+\.\d+\.\d+\.\d+$/.test(url.hostname)) {
+                    e.portfolio = "El enlace no parece válido.";
+                }
             } catch {
                 e.portfolio = "Introduce una URL válida (ej: tumarca.com).";
             }
