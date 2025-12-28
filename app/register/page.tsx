@@ -54,8 +54,10 @@ export default function RegisterPage() {
                 const hasScheme = /^https?:\/\//i.test(raw);
                 const normalized = hasScheme ? raw : `https://${raw}`;
                 const url = new URL(normalized);
-                // Accept localhost, IP addresses, or domains with dots
-                if (!url.hostname.includes(".") && url.hostname !== "localhost" && !/^\d+\.\d+\.\d+\.\d+$/.test(url.hostname)) {
+                // Accept domains with dots, localhost, or any valid hostname parsed by URL
+                if (!url.hostname || url.hostname.length === 0) {
+                    e.portfolio = "El enlace no parece válido.";
+                } else if (!url.hostname.includes(".") && url.hostname !== "localhost") {
                     e.portfolio = "El enlace no parece válido.";
                 }
             } catch {
@@ -95,7 +97,11 @@ export default function RegisterPage() {
         if (!isValid) return;
 
         if (process.env.NODE_ENV !== "production") {
-            console.log("REGISTER_PAYLOAD", form);
+            // Log sanitized version without sensitive data
+            console.log("REGISTER_PAYLOAD", {
+                ...form,
+                password: "[REDACTED]"
+            });
         }
         // TODO: Replace with toast notification system
         alert("✅ Solicitud enviada (simulación).");
