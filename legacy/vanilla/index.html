@@ -1,60 +1,219 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TheuxUnion | Acceso por méritos</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <title>TheuxUnion | Comunidad meritocrática de UX</title>
+    <meta name="description"
+        content="TheuxUnion: red meritocrática de nodos entre diseñadores y empresas. Accede por méritos, crece por impacto." />
+    <link rel="stylesheet" href="./css/style.css" />
 </head>
 
 <body>
+    <!-- Background -->
+    <div class="bg-aurora" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <!-- Topbar -->
     <header class="topbar">
-        <div class="topbar-inner">
-            <div class="brand">
-                <div class="brand-badge">UX</div>
-            </div>
+        <div class="topbar-inner container">
+            <a class="brand" href="./index.html" aria-label="TheuxUnion">
+                <span class="brand-badge brand-badge--logo" aria-hidden="true">
+                    <img src="./assets/logo1.svg" alt="TheuxUnion logo">
+                </span>
+            </a>
+
+            <nav class="nav">
+                <a href="#product">Producto</a>
+                <a href="#features">Features</a>
+                <a href="#market">Marketplace</a>
+                <a href="#company">Company</a>
+            </nav>
 
             <div class="actions">
-                <button class="iconbtn" type="button" aria-label="Cambiar tema" onclick="toggleTheme()">☾/☀</button>
-                <a class="iconbtn" href="discover.html" title="Ver demo">Demo</a>
+                <!-- Theme toggle (Tailwind-ish) -->
+                <button class="theme-toggle" type="button" aria-label="Cambiar tema" onclick="toggleTheme()">
+                    <span class="tt-icon tt-sun" aria-hidden="true">
+                        <!-- Sun -->
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                            <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2" />
+                            <path
+                                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </span>
+                    <span class="tt-icon tt-moon" aria-hidden="true">
+                        <!-- Moon -->
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                            <path d="M21 13.2A7.5 7.5 0 0 1 10.8 3a6.6 6.6 0 1 0 10.2 10.2Z" stroke="currentColor"
+                                stroke-width="2" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </button>
+
+                <a class="btn btn-ghost" href="./access.html">Log in →</a>
             </div>
         </div>
     </header>
 
+    <!-- Hero -->
     <main class="container">
-        <section class="hero hero-grid">
-            <div>
-                <p class="kicker">Acceso meritocrático, sin humo.</p>
-                <h1 class="h1">Bienvenido a <span class="accent">TheuxUnion</span></h1>
-                <p class="lead">
-                    Una red de nodos entre diseñadores y empresas donde el ranking se construye con experiencia,
-                    formación y portfolio verificable. Entra por méritos, crece por impacto.
-                </p>
+        <section class="hero" id="product">
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <p class="kicker">Acceso por méritos. Cero humo.</p>
+                    <h1 class="h1">
+                        Cambiamos la forma en la que <span class="accent">diseñadores</span> y <span
+                            class="accent">empresas</span> se conectan
+                    </h1>
+                    <p class="lead">
+                        Una red de nodos donde el ranking se construye con experiencia, formación y portfolio
+                        verificable.
+                        Entra por méritos, crece por impacto.
+                    </p>
 
-                <div class="row">
-                    <a class="btn btn-primary" href="access.html">Solicitar acceso</a>
-                    <a class="btn btn-secondary" href="discover.html">Ver demo</a>
+                    <div class="cta-row">
+                        <a class="btn btn-primary" href="./access.html">Crear cuenta</a>
+                        <a class="btn btn-secondary" href="./discover.html" title="Demo UI">Live demo →</a>
+                    </div>
+
+                    <div class="mini-badges">
+                        <span class="chip">Merit Gate</span>
+                        <span class="chip">Nodos</span>
+                        <span class="chip">Portfolios</span>
+                    </div>
                 </div>
 
-                <div class="notice">
-                    Este MVP simula el acceso y algunas interacciones para una demo de incubadora.
-                    No hay backend todavía.
+                <!-- Circle “nodes” image collage -->
+                <div class="hero-nodes" aria-label="Collage de nodos">
+                    <div class="node node-xl">
+                        <img src="./assets/img/hero-1.jpg" alt="Nodo 1" loading="lazy">
+                    </div>
+                    <div class="node node-lg">
+                        <img src="./assets/img/hero-2.jpg" alt="Nodo 2" loading="lazy">
+                    </div>
+                    <div class="node node-md">
+                        <img src="./assets/img/hero-3.jpg" alt="Nodo 3" loading="lazy">
+                    </div>
+                    <div class="node node-sm">
+                        <img src="./assets/img/hero-4.jpg" alt="Nodo 4" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trusted / Logos section (captura 3 vibe) -->
+        <section class="section card" id="features">
+            <div class="split">
+                <div>
+                    <h2 class="h2">Trusted by the most innovative teams</h2>
+                    <p class="muted">
+                        TheuxUnion valida perfiles y conecta oportunidades con una capa de mérito.
+                        Menos ruido, más señal.
+                    </p>
+                    <div class="cta-row">
+                        <a class="btn btn-primary" href="./access.html">Create account</a>
+                        <a class="btn btn-ghost" href="#market">Contact us →</a>
+                    </div>
+                </div>
+
+                <div class="logo-wall" aria-label="Logos de ejemplo">
+                    <span class="logo-pill">Tuple</span>
+                    <span class="logo-pill">Reform</span>
+                    <span class="logo-pill">SavvyCal</span>
+                    <span class="logo-pill">Laravel</span>
+                    <span class="logo-pill">Transistor</span>
+                    <span class="logo-pill">Statamic</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Descriptive section (inspirada en captura 6 + “más contenido”) -->
+        <section class="section card" id="company">
+            <div class="about-grid">
+                <div class="about-copy">
+                    <p class="kicker">About us</p>
+                    <h2 class="h2">On a mission to empower merit-based design networks</h2>
+                    <p class="muted">
+                        Un ecosistema donde cada nodo es una persona o empresa con identidad clara.
+                        El acceso es simple, transparente y sin “puertas oscuras”: o cumples requisitos, o sabes
+                        exactamente qué te falta.
+                    </p>
+
+                    <h3 class="h3">Our mission</h3>
+                    <p class="muted">
+                        Reducir el caos de la búsqueda laboral, elevar el estándar y acelerar colaboraciones de alto
+                        impacto.
+                        TheuxUnion premia trayectoria real y formación verificada, no postureo.
+                    </p>
+
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-value">Merit</div>
+                            <div class="stat-label">Rank real</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Nodos</div>
+                            <div class="stat-label">Conexiones</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Pro</div>
+                            <div class="stat-label">Señal alta</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Zero</div>
+                            <div class="stat-label">Humo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-nodes">
+                    <div class="node node-lg">
+                        <img src="./assets/img/about-1.jpg" alt="Nodo about 1" loading="lazy">
+                    </div>
+                    <div class="node node-md">
+                        <img src="./assets/img/about-2.jpg" alt="Nodo about 2" loading="lazy">
+                    </div>
+                    <div class="node node-md">
+                        <img src="./assets/img/about-3.jpg" alt="Nodo about 3" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer (captura 4 vibe, simple) -->
+        <footer class="footer" id="market">
+            <div class="footer-inner card">
+                <div class="footer-left">
+                    <div class="footer-brand">
+                        <span class="brand-badge brand-badge--logo" aria-hidden="true">
+                            <img src="./assets/logo1.svg" alt="TheuxUnion logo">
+                        </span>
+                        <div>
+                            <strong>TheuxUnion</strong>
+                            <div class="muted">Merit-based network for UX</div>
+                        </div>
+                    </div>
+                    <p class="muted">
+                        MVP en construcción. Este repo sirve como demostración de UI, responsive y theming.
+                    </p>
+                </div>
+
+                <div class="footer-right">
+                    <a class="footer-link" href="./access.html">Crear cuenta</a>
+                    <a class="footer-link" href="./discover.html">Demo</a>
+                    <a class="footer-link" href="./404.html">404</a>
                 </div>
             </div>
 
-            <aside class="card">
-                <p class="kicker">¿Qué se valida en este MVP?</p>
-                <ul style="margin:0; padding-left: 18px; color: var(--muted);">
-                    <li>Que el acceso por méritos se entiende y se percibe valioso.</li>
-                    <li>Que el usuario identifica el valor en “Descubrir” y “Nodos”.</li>
-                    <li>Que la narrativa es clara en menos de 60 segundos.</li>
-                </ul>
-            </aside>
-        </section>
+            <div class="footer-bottom muted">
+                © <span id="year"></span> TheuxUnion. Built with HTML/CSS/JS.
+            </div>
+        </footer>
     </main>
 
-    <script src="js/main.js"></script>
+    <script src="./js/main.js" defer></script>
 </body>
 
 </html>
