@@ -123,12 +123,14 @@ html[data-theme="light"] body::before {
   width: 720px;
   height: 420px;
 
-  background: radial-gradient(closest-side,
-      rgba(255, 59, 200, 0.11) 0%,
-      rgba(255, 59, 200, 0.060) 38%,
-      rgba(255, 59, 200, 0.030) 58%,
-      rgba(255, 59, 200, 0.014) 72%,
-      transparent 95%);
+  background: radial-gradient(
+    closest-side,
+    rgba(255, 59, 200, 0.11) 0%,
+    rgba(255, 59, 200, 0.060) 38%,
+    rgba(255, 59, 200, 0.030) 58%,
+    rgba(255, 59, 200, 0.014) 72%,
+    transparent 95%
+  );
 
   filter: blur(14px);
   pointer-events: none;
@@ -143,22 +145,26 @@ html[data-theme="light"] body::before {
   bottom: 0;
   height: 260px;
 
-  background: linear-gradient(to bottom,
-      rgba(4, 8, 20, 0) 0%,
-      rgba(4, 8, 20, 0.18) 40%,
-      rgba(4, 8, 20, 0.55) 78%,
-      var(--bg-main-2) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(4, 8, 20, 0) 0%,
+    rgba(4, 8, 20, 0.18) 40%,
+    rgba(4, 8, 20, 0.55) 78%,
+    var(--bg-main-2) 100%
+  );
 
   pointer-events: none;
   z-index: 2;
 }
 
 html[data-theme="light"] .hero-fade::after {
-  background: linear-gradient(to bottom,
-      rgba(226, 236, 255, 0) 0%,
-      rgba(226, 236, 255, 0.35) 45%,
-      rgba(226, 236, 255, 0.70) 82%,
-      var(--bg-main-2) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(226, 236, 255, 0) 0%,
+    rgba(226, 236, 255, 0.35) 45%,
+    rgba(226, 236, 255, 0.70) 82%,
+    var(--bg-main-2) 100%
+  );
 }
 
 .hero-content {
@@ -178,10 +184,13 @@ html[data-theme="light"] .h1-calm::before {
   width: min(640px, 95vw);
   height: 180px;
   z-index: -1;
-  background: radial-gradient(closest-side,
-      rgba(15, 42, 82, 0.12),
-      rgba(15, 42, 82, 0.05) 55%,
-      transparent 78%);
+
+  background: radial-gradient(
+    closest-side,
+    rgba(15, 42, 82, 0.12),
+    rgba(15, 42, 82, 0.05) 55%,
+    transparent 78%
+  );
   filter: blur(8px);
 }
 
@@ -230,10 +239,9 @@ html[data-theme="light"] .tux-navlink:focus-visible {
 }
 
 /* =========================
-   HOVER SYSTEM (dark base)
+   HOVER SYSTEM
    ========================= */
 
-/* Base glass hover: idioma, login, theme toggle */
 .tux-hover {
   transition:
     background 160ms ease,
@@ -255,7 +263,6 @@ html[data-theme="light"] .tux-navlink:focus-visible {
   outline: none;
 }
 
-/* Registro (gradiente cyan): solo borde + glow */
 .tux-hover-border {
   transition:
     border-color 160ms ease,
@@ -275,7 +282,6 @@ html[data-theme="light"] .tux-navlink:focus-visible {
   outline: none;
 }
 
-/* Crear cuenta (magenta): borde + glow */
 .tux-hover-border-magenta {
   transition:
     border-color 160ms ease,
@@ -296,13 +302,12 @@ html[data-theme="light"] .tux-navlink:focus-visible {
 }
 
 /* =========================
-   LIGHT MODE · Hover con más fuerza
+   LIGHT MODE · Hover más fuerte
    ========================= */
 
 html[data-theme="light"] .tux-hover:hover,
 html[data-theme="light"] .tux-hover:focus-visible {
   background: color-mix(in srgb, var(--glass-3) 80%, rgba(31, 186, 209, 0.16)) !important;
-
   border-color: color-mix(in srgb, var(--brand-electric) 55%, white 45%) !important;
 
   box-shadow:
@@ -336,15 +341,17 @@ html[data-theme="light"] .tux-hover-border-magenta:focus-visible {
 
 /* =========================
    REGISTRO (navbar) más vibrante en light
-   Usa esta clase extra en el <a> de Registro: "tux-register"
    ========================= */
 
 html[data-theme="light"] .tux-register {
-  background: linear-gradient(90deg,
-      color-mix(in srgb, var(--brand-electric) 72%, white 28%),
-      color-mix(in srgb, var(--brand-neon) 70%, white 30%)) !important;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--brand-electric) 72%, white 28%),
+    color-mix(in srgb, var(--brand-neon) 70%, white 30%)
+  ) !important;
 
   color: #061a2f !important;
+
   box-shadow:
     0 0 0 1px rgba(15, 42, 82, 0.14),
     0 10px 26px rgba(31, 186, 209, 0.18) !important;
@@ -440,18 +447,24 @@ html[data-theme="light"] .tux-bridge::before {
   display: inline-flex;
 }
 
+/* ✅ Compacto + preparado para 3 letras (DEU/ENG/ESP) */
 .tux-lang-btn {
   height: 36px;
-  width: 84px;
+  width: 66px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 8px;
+  gap: 6px;
 
   border-radius: 12px;
   border: 1px solid var(--border-soft);
   background: var(--glass-2);
   color: var(--text-primary);
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 /* Menú desplegable */
@@ -522,7 +535,7 @@ html[data-theme="light"] .tux-lang-menu {
 }
 
 /* =====================================================
-   NAVBAR · “ESTILO ANTERIOR” (OSCURA + LIMPIA) + ORBE ORIGINAL
+   NAVBAR · OSCURA + LIMPIA + ORBE
    ===================================================== */
 
 header.navbar {
@@ -533,7 +546,6 @@ header.navbar {
   z-index: 999;
 }
 
-/* Superficie: más oscura y más “plana”, sin bordes */
 header.navbar .navbar-surface {
   position: relative;
   height: var(--navbar-h);
@@ -553,7 +565,7 @@ header.navbar .navbar-surface {
     -webkit-backdrop-filter 220ms ease;
 }
 
-/* Halo suave (muy sutil) */
+/* Halo suave */
 header.navbar .navbar-surface::before {
   content: "";
   position: absolute;
@@ -566,12 +578,8 @@ header.navbar .navbar-surface::before {
   z-index: -1;
 
   background:
-    radial-gradient(920px 220px at 55% 0%,
-      rgba(61, 242, 255, 0.09),
-      transparent 72%),
-    radial-gradient(760px 220px at 18% 0%,
-      rgba(255, 59, 200, 0.07),
-      transparent 74%),
+    radial-gradient(920px 220px at 55% 0%, rgba(61, 242, 255, 0.09), transparent 72%),
+    radial-gradient(760px 220px at 18% 0%, rgba(255, 59, 200, 0.07), transparent 74%),
     linear-gradient(180deg, rgba(5, 11, 26, 0.55), transparent 82%);
 
   filter: blur(12px);
@@ -583,14 +591,15 @@ header.navbar .navbar-surface::before {
     filter 220ms ease;
 }
 
-/* Compact (al bajar): subimos opacidad + blur */
+/* Compact (scroll) */
 header.navbar.is-compact .navbar-surface {
-  background: linear-gradient(180deg,
-      rgba(5, 11, 26, 0.97) 0%,
-      rgba(4, 8, 20, 0.985) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(5, 11, 26, 0.97) 0%,
+    rgba(4, 8, 20, 0.985) 100%
+  );
 
-  box-shadow:
-    0 18px 46px rgba(0, 0, 0, 0.58);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.58);
 
   backdrop-filter: blur(26px) saturate(155%);
   -webkit-backdrop-filter: blur(26px) saturate(155%);
@@ -605,18 +614,20 @@ header.navbar.is-compact .navbar-surface::before {
 /* Inner */
 header.navbar .navbar-inner {
   height: var(--navbar-h);
+  min-width: 0; /* ✅ evita overflow en móviles */
 }
 
-/* Brand layout */
+/* Brand layout (✅ FIX móvil: min-width 0) */
 header.navbar .navbar-brand {
   display: flex;
   align-items: center;
   gap: 12px;
-  min-width: 240px;
+  min-width: 0;
+  flex: 0 1 auto;
 }
 
 /* =====================================================
-   ORBE "PERLA" (Réplica exacta de captura)
+   ORBE "PERLA"
    ===================================================== */
 
 header.navbar .navbar-logo {
@@ -628,18 +639,10 @@ header.navbar .navbar-logo {
   overflow: hidden;
 
   background:
-    radial-gradient(circle at 30% 30%,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(255, 255, 255, 0) 30%),
-    radial-gradient(circle at 20% 40%,
-      rgba(0, 255, 255, 0.8) 0%,
-      rgba(0, 255, 255, 0) 60%),
-    radial-gradient(circle at 85% 60%,
-      rgba(255, 0, 200, 0.8) 0%,
-      rgba(255, 0, 200, 0) 70%),
-    radial-gradient(circle at center,
-      rgba(100, 200, 255, 0.4),
-      rgba(150, 50, 250, 0.3));
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 30%),
+    radial-gradient(circle at 20% 40%, rgba(0, 255, 255, 0.8) 0%, rgba(0, 255, 255, 0) 60%),
+    radial-gradient(circle at 85% 60%, rgba(255, 0, 200, 0.8) 0%, rgba(255, 0, 200, 0) 70%),
+    radial-gradient(circle at center, rgba(100, 200, 255, 0.4), rgba(150, 50, 250, 0.3));
 
   box-shadow:
     inset -2px -2px 6px rgba(255, 255, 255, 0.2),
@@ -669,7 +672,6 @@ header.navbar .navbar-brand-text {
   transition: opacity 220ms ease, transform 220ms ease, max-width 220ms ease;
 }
 
-/* Scroll down: ocultar texto */
 header.navbar.is-compact .navbar-brand-text,
 header.navbar .navbar-brand-text.is-hidden {
   opacity: 0;
@@ -706,13 +708,13 @@ header.navbar a.tux-brand {
   cursor: pointer;
 }
 
-/* Asegura transición suave */
+/* Transición suave */
 header.navbar a.tux-brand .navbar-logo {
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
   transform-origin: center;
 }
 
-/* ✅ Hover del ORBE: escala + glow (gana a is-compact) */
+/* Hover ORBE */
 header.navbar a.tux-brand:hover .navbar-logo,
 header.navbar a.tux-brand:focus-visible .navbar-logo {
   transform: scale(1.08) !important;
@@ -723,7 +725,7 @@ header.navbar a.tux-brand:focus-visible .navbar-logo {
   filter: saturate(1.6) brightness(1.12);
 }
 
-/* ✅ Hover del TEXTO: solo color */
+/* Hover TEXTO */
 header.navbar a.tux-brand:hover .navbar-title,
 header.navbar a.tux-brand:focus-visible .navbar-title {
   color: var(--brand-electric) !important;
@@ -734,7 +736,29 @@ header.navbar a.tux-brand:focus-visible .navbar-tagline {
   color: var(--brand-neon) !important;
 }
 
-/* Bonus: accesibilidad, que no salga el foco feo */
 header.navbar a.tux-brand:focus-visible {
   outline: none;
+}
+
+/* =========================
+   MOBILE TIGHTEN (muy pequeños)
+   ========================= */
+
+@media (max-width: 420px) {
+  header.navbar .navbar-inner {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  header.navbar .navbar-brand {
+    gap: 10px;
+  }
+
+  .tux-lang-btn {
+    width: 62px;
+  }
+
+  header.navbar .navbar-controls {
+    gap: 8px;
+  }
 }
