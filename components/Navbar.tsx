@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSelect from "./LanguageSelect";
 import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
     const [compact, setCompact] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const onScroll = () => setCompact(window.scrollY > 20);
@@ -15,38 +18,50 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    function handleHomeClick(e: React.MouseEvent) {
+        // Si ya estás en "/", no hay navegación real; forzamos ir arriba.
+        if (pathname === "/") {
+            e.preventDefault();
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }
+    }
+
     return (
         <header className={`navbar ${compact ? "is-compact" : ""}`}>
             <div className="navbar-surface">
                 <div className="navbar-inner mx-auto flex w-full max-w-6xl items-center justify-between px-5">
-                    {/* Brand */}
-                    <div className="navbar-brand">
+                    {/* ✅ Brand entero clickable a Home */}
+                    <Link
+                        href="/"
+                        onClick={handleHomeClick}
+                        className="navbar-brand tux-brand"
+                        aria-label="TheuxUnion · Inicio"
+                    >
                         <div className="navbar-logo" />
-                        <div
-                            className={`navbar-brand-text leading-tight ${compact ? "is-hidden" : ""}`}
-                        >
-                            <div className="text-sm font-semibold text-[color:var(--text-primary)]">
+                        <div className={`navbar-brand-text leading-tight ${compact ? "is-hidden" : ""}`}>
+                            <div className="navbar-title text-sm font-semibold text-[color:var(--text-primary)]">
                                 TheuxUnion
                             </div>
-                            <div className="text-[12px] text-[color:var(--text-secondary)]">
+                            <div className="navbar-tagline text-[12px] text-[color:var(--text-secondary)]">
                                 Empowering design connections
                             </div>
                         </div>
-                    </div>
+                    </Link>
 
                     {/* Middle nav */}
-                    <nav className="hidden md:flex items-center gap-2">
-                        {["Home", "Conectar", "Quiénes somos"].map((label, i) => (
-                            <a
-                                key={label}
-                                href={["#home", "#connect", "#about"][i]}
-                                className="tux-navlink"
-                            >
-                                {label}
-                            </a>
-                        ))}
-                    </nav>
+                    <nav className="hidden items-center gap-2 md:flex">
+                        <Link href="/" onClick={handleHomeClick} className="tux-navlink">
+                            Home
+                        </Link>
 
+                        <a href="#connect" className="tux-navlink">
+                            Conectar
+                        </a>
+
+                        <a href="#about" className="tux-navlink">
+                            Quiénes somos
+                        </a>
+                    </nav>
 
                     {/* Right controls */}
                     <div className="flex items-center gap-3">
@@ -55,7 +70,7 @@ export default function Navbar() {
 
                         <a
                             href="#login"
-                            className="tux-hover hidden md:inline-flex h-9 items-center justify-center rounded-xl border px-4 text-sm transition"
+                            className="tux-hover hidden h-9 items-center justify-center rounded-xl border px-4 text-sm transition md:inline-flex"
                             style={{
                                 borderColor: "var(--border-soft)",
                                 background: "var(--glass-2)",
@@ -65,19 +80,19 @@ export default function Navbar() {
                             Login
                         </a>
 
-                        <a
-                            href="#register"
-                            className="tux-hover-border hidden md:inline-flex h-9 items-center justify-center rounded-xl border px-4 text-sm font-semibold transition"
+                        {/* ✅ Registro -> /register */}
+                        <Link
+                            href="/register"
+                            className="tux-hover-border tux-register hidden h-9 items-center justify-center rounded-xl border px-4 text-sm font-semibold transition md:inline-flex"
                             style={{
                                 borderColor: "var(--border-soft)",
-                                background:
-                                    "linear-gradient(90deg, var(--brand-electric), var(--brand-neon))",
+                                background: "linear-gradient(90deg, var(--brand-electric), var(--brand-neon))",
                                 color: "#050b1a",
                                 boxShadow: "0 0 0 1px rgba(255,255,255,0.10)",
                             }}
                         >
                             Registro
-                        </a>
+                        </Link>
 
                         <MobileMenu />
                     </div>

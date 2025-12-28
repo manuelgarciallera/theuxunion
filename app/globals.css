@@ -27,6 +27,12 @@
 
   --glow-magenta: rgba(255, 59, 200, 0.38);
   --glow-cyan: rgba(61, 242, 255, 0.28);
+
+  /* ✅ EXTRA: tokens para formularios / cards (Register, panels, etc.) */
+  --card-bg: var(--glass-2);
+  --card-border: var(--border-soft);
+  --input-bg: var(--glass-1);
+  --input-border: var(--border-soft);
 }
 
 html[data-theme="light"] {
@@ -48,6 +54,12 @@ html[data-theme="light"] {
 
   --glow-magenta: rgba(255, 59, 200, 0.22);
   --glow-cyan: rgba(31, 186, 209, 0.18);
+
+  /* ✅ EXTRA: cards/inputs en light */
+  --card-bg: rgba(255, 255, 255, 0.72);
+  --card-border: rgba(15, 42, 82, 0.16);
+  --input-bg: rgba(255, 255, 255, 0.78);
+  --input-border: rgba(15, 42, 82, 0.16);
 }
 
 /* =========================
@@ -190,7 +202,6 @@ html[data-theme="light"] .h1-calm::before {
   border-radius: 12px;
 
   font-size: 14px;
-  /* base */
   font-weight: 500;
   line-height: 1;
 
@@ -234,7 +245,6 @@ html[data-theme="light"] .tux-navlink:focus-visible {
 .tux-hover:hover,
 .tux-hover:focus-visible {
   background: color-mix(in srgb, var(--glass-3) 78%, rgba(61, 242, 255, 0.12)) !important;
-
   border-color: color-mix(in srgb, var(--brand-electric) 70%, white 30%) !important;
 
   box-shadow:
@@ -503,87 +513,6 @@ html[data-theme="light"] .tux-lang-menu {
 }
 
 /* =========================
-   LANGUAGE SELECT · RECUPERAR ENCAPSULADO
-   ========================= */
-
-.tux-lang {
-  position: relative;
-  display: inline-flex;
-}
-
-.tux-lang-btn {
-  height: 36px;
-  width: 84px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 10px;
-
-  border-radius: 12px;
-  border: 1px solid var(--border-soft);
-  background: var(--glass-2);
-  color: var(--text-primary);
-}
-
-/* Menú desplegable */
-.tux-lang-menu {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  width: 140px;
-  padding: 6px;
-  border-radius: 14px;
-
-  border: 1px solid var(--border-soft);
-  background: rgba(5, 11, 26, 0.92);
-  backdrop-filter: blur(22px) saturate(160%);
-  -webkit-backdrop-filter: blur(22px) saturate(160%);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.40);
-
-  z-index: 9999;
-}
-
-html[data-theme="light"] .tux-lang-menu {
-  background: rgba(237, 243, 255, 0.96);
-  box-shadow: 0 18px 40px rgba(15, 42, 82, 0.18);
-}
-
-.tux-lang-item {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  text-align: left;
-  padding: 10px 10px;
-  border-radius: 12px;
-
-  color: var(--text-secondary);
-  background: transparent;
-
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-
-  transition: background 160ms ease, color 160ms ease;
-}
-
-.tux-lang-item:hover {
-  color: var(--text-primary);
-  background: color-mix(in srgb, var(--brand-electric) 18%, transparent);
-}
-
-.tux-lang-item.is-active {
-  color: var(--text-primary);
-  background: color-mix(in srgb, var(--brand-electric) 22%, transparent);
-}
-
-.tux-lang-check {
-  font-size: 12px;
-  color: color-mix(in srgb, var(--brand-electric) 70%, var(--text-primary));
-}
-
-/* =========================
    SELECTION
    ========================= */
 
@@ -594,7 +523,6 @@ html[data-theme="light"] .tux-lang-menu {
 
 /* =====================================================
    NAVBAR · “ESTILO ANTERIOR” (OSCURA + LIMPIA) + ORBE ORIGINAL
-   Sustituye tu bloque actual de NAVBAR por este completo
    ===================================================== */
 
 header.navbar {
@@ -614,7 +542,6 @@ header.navbar .navbar-surface {
 
   border: 0;
 
-  /* clave: oscuro “serio”, sin sensación de gris */
   background: rgba(5, 11, 26, 0.56);
   backdrop-filter: blur(16px) saturate(150%);
   -webkit-backdrop-filter: blur(16px) saturate(150%);
@@ -656,7 +583,7 @@ header.navbar .navbar-surface::before {
     filter 220ms ease;
 }
 
-/* Compact (al bajar): subimos opacidad + blur (esto es lo que pedías) */
+/* Compact (al bajar): subimos opacidad + blur */
 header.navbar.is-compact .navbar-surface {
   background: linear-gradient(180deg,
       rgba(5, 11, 26, 0.97) 0%,
@@ -671,7 +598,6 @@ header.navbar.is-compact .navbar-surface {
 
 header.navbar.is-compact .navbar-surface::before {
   opacity: 0.72;
-  /* ↑ halo más visible al bajar */
   height: calc(var(--navbar-h) + 120px);
   filter: blur(18px);
 }
@@ -698,47 +624,28 @@ header.navbar .navbar-logo {
   height: 34px;
   flex: 0 0 34px;
   border-radius: 50%;
-  /* Círculo perfecto */
   position: relative;
   overflow: hidden;
 
-  /* Estructura de capas:
-     1. Brillo blanco intenso (Top-left)
-     2. Reflejo cian (Lado izquierdo)
-     3. Reflejo rosa/fucsia (Lado derecho)
-     4. Fondo base azulado oscuro
-  */
   background:
-    /* 1. Punto de luz principal (Specular) */
     radial-gradient(circle at 30% 30%,
       rgba(255, 255, 255, 0.9) 0%,
       rgba(255, 255, 255, 0) 30%),
-
-    /* 2. El gran núcleo Cian (Izquierda) */
     radial-gradient(circle at 20% 40%,
       rgba(0, 255, 255, 0.8) 0%,
       rgba(0, 255, 255, 0) 60%),
-
-    /* 3. El gran núcleo Rosa (Derecha) */
     radial-gradient(circle at 85% 60%,
       rgba(255, 0, 200, 0.8) 0%,
       rgba(255, 0, 200, 0) 70%),
-
-    /* 4. Color base de relleno (Suave azul/violeta) */
     radial-gradient(circle at center,
       rgba(100, 200, 255, 0.4),
       rgba(150, 50, 250, 0.3));
 
-  /* Glow exterior y suavizado de bordes */
   box-shadow:
     inset -2px -2px 6px rgba(255, 255, 255, 0.2),
-    /* Brillo en el borde */
     0 0 10px rgba(0, 255, 255, 0.3),
-    /* Resplandor cian */
     0 0 15px rgba(255, 0, 200, 0.2);
-  /* Resplandor rosa */
 
-  /* Desenfoque sutil para mezclar colores como en la imagen */
   filter: saturate(1.4) brightness(1.1);
 }
 
@@ -772,7 +679,7 @@ header.navbar .navbar-brand-text.is-hidden {
   white-space: nowrap;
 }
 
-/* Light mode: lo dejamos suave pero consistente */
+/* Light mode navbar */
 html[data-theme="light"] header.navbar .navbar-surface {
   background: rgba(237, 243, 255, 0.64);
   backdrop-filter: blur(16px) saturate(150%);
@@ -785,4 +692,49 @@ html[data-theme="light"] header.navbar.is-compact .navbar-surface {
   backdrop-filter: blur(22px) saturate(165%);
   -webkit-backdrop-filter: blur(22px) saturate(165%);
   box-shadow: 0 16px 34px rgba(15, 42, 82, 0.14);
+}
+
+/* =====================================================
+   BRAND HOVERS (Navbar) · FORZADO
+   ===================================================== */
+
+header.navbar a.tux-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Asegura transición suave */
+header.navbar a.tux-brand .navbar-logo {
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  transform-origin: center;
+}
+
+/* ✅ Hover del ORBE: escala + glow (gana a is-compact) */
+header.navbar a.tux-brand:hover .navbar-logo,
+header.navbar a.tux-brand:focus-visible .navbar-logo {
+  transform: scale(1.08) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 0 20px var(--glow-cyan),
+    0 0 24px var(--glow-magenta) !important;
+  filter: saturate(1.6) brightness(1.12);
+}
+
+/* ✅ Hover del TEXTO: solo color */
+header.navbar a.tux-brand:hover .navbar-title,
+header.navbar a.tux-brand:focus-visible .navbar-title {
+  color: var(--brand-electric) !important;
+}
+
+header.navbar a.tux-brand:hover .navbar-tagline,
+header.navbar a.tux-brand:focus-visible .navbar-tagline {
+  color: var(--brand-neon) !important;
+}
+
+/* Bonus: accesibilidad, que no salga el foco feo */
+header.navbar a.tux-brand:focus-visible {
+  outline: none;
 }

@@ -1,48 +1,48 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 
 type PillKey = "merit" | "nodes" | "portfolios";
 
 type Pill = {
-  key: PillKey;
-  label: string;
-  title: string;
-  desc: string;
-  accent: string;
-  image: string;
+    key: PillKey;
+    label: string;
+    title: string;
+    desc: string;
+    accent: string;
+    image: string;
 };
 
 // ✅ Para que funcione en local (/) y en GitHub Pages (/theuxunion)
 const basePath = process.env.NODE_ENV === "production" ? "/theuxunion" : "";
 
 const pills: Pill[] = [
-  {
-    key: "merit",
-    label: "Merit Gate",
-    title: "Acceso por méritos, no por postureo.",
-    desc: "Validamos formación, experiencia y portfolio verificable.",
-    accent: "rgba(255, 59, 200, 0.20)",
-    image: `${basePath}/hero/merit.png`,
-  },
-  {
-    key: "nodes",
-    label: "Nodos",
-    title: "Conexiones con señal real.",
-    desc: "Empresas y talento se encuentran por encaje, no por ruido.",
-    accent: "rgba(61, 242, 255, 0.18)",
-    image: `${basePath}/hero/nodes.png`,
-  },
-  {
-    key: "portfolios",
-    label: "Portfolios",
-    title: "Tu trabajo habla por ti.",
-    desc: "Ranking que se mueve por impacto y consistencia.",
-    accent: "rgba(76, 201, 240, 0.18)",
-    image: `${basePath}/hero/portfolios.png`,
-  },
+    {
+        key: "merit",
+        label: "Merit Gate",
+        title: "Acceso por méritos, no por postureo.",
+        desc: "Validamos formación, experiencia y portfolio verificable.",
+        accent: "rgba(255, 59, 200, 0.20)",
+        image: `${basePath}/hero/merit.png`,
+    },
+    {
+        key: "nodes",
+        label: "Nodos",
+        title: "Conexiones con señal real.",
+        desc: "Empresas y talento se encuentran por encaje, no por ruido.",
+        accent: "rgba(61, 242, 255, 0.18)",
+        image: `${basePath}/hero/nodes.png`,
+    },
+    {
+        key: "portfolios",
+        label: "Portfolios",
+        title: "Tu trabajo habla por ti.",
+        desc: "Ranking que se mueve por impacto y consistencia.",
+        accent: "rgba(76, 201, 240, 0.18)",
+        image: `${basePath}/hero/portfolios.png`,
+    },
 ];
-
 
 export default function Hero() {
     const [active, setActive] = useState<PillKey>("merit");
@@ -61,8 +61,7 @@ export default function Hero() {
                     </div>
 
                     <h1 className="h1-calm mt-5 max-w-[20ch] text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-                        <span className="text-[var(--brand-electric)]">Cambiamos</span> la
-                        forma{" "}
+                        <span className="text-[var(--brand-electric)]">Cambiamos</span> la forma{" "}
                         <span style={{ color: "var(--text-primary)" }}>en la que</span>{" "}
                         <span className="text-[var(--brand-electric)]">diseñadores</span> y{" "}
                         <span className="text-[var(--brand-electric)]">empresas</span>{" "}
@@ -73,14 +72,14 @@ export default function Hero() {
                         className="mt-6 max-w-xl text-lg leading-relaxed"
                         style={{ color: "var(--text-secondary)" }}
                     >
-                        Una red de nodos donde tu ranking se construye con experiencia,
-                        formación y portfolio verificable. Entra por méritos, crece por
-                        impacto.
+                        Una red de nodos donde tu ranking se construye con experiencia, formación y
+                        portfolio verificable. Entra por méritos, crece por impacto.
                     </p>
 
                     <div className="mt-10 flex items-center gap-4">
-                        <a
-                            href="#register"
+                        {/* ✅ Botón que navega a /register */}
+                        <Link
+                            href="/register"
                             className="tux-hover-border-magenta inline-flex items-center justify-center rounded-xl border px-6 py-3 text-sm font-semibold text-white transition"
                             style={{
                                 background: "#ff3bc8",
@@ -90,8 +89,9 @@ export default function Hero() {
                             }}
                         >
                             Crear cuenta
-                        </a>
+                        </Link>
 
+                        {/* De momento, lo dejamos como anchor interno */}
                         <a
                             href="#demo"
                             className="inline-flex items-center justify-center rounded-xl border px-6 py-3 text-sm font-semibold"
@@ -192,9 +192,8 @@ export default function Hero() {
                             color: "var(--text-secondary)",
                         }}
                     >
-                        <strong style={{ color: "var(--text-primary)" }}>Tip:</strong>{" "}
-                        sube tu portfolio y valida hitos. Tu ranking se mueve por calidad, no
-                        por postureo.
+                        <strong style={{ color: "var(--text-primary)" }}>Tip:</strong> sube tu portfolio y
+                        valida hitos. Tu ranking se mueve por calidad, no por postureo.
                     </div>
                 </div>
             </div>
