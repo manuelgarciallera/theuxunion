@@ -20,7 +20,7 @@ const pills: Pill[] = [
         title: "Acceso por méritos, no por postureo.",
         desc: "Validamos formación, experiencia y portfolio verificable.",
         accent: "rgba(255, 59, 200, 0.20)",
-        image: "/hero/merit.png.jpg",
+        image: "/hero/merit.jpg",
     },
     {
         key: "nodes",
@@ -28,7 +28,7 @@ const pills: Pill[] = [
         title: "Conexiones con señal real.",
         desc: "Empresas y talento se encuentran por encaje, no por ruido.",
         accent: "rgba(61, 242, 255, 0.18)",
-        image: "/hero/nodes.png.jpg",
+        image: "/hero/nodes.jpg",
     },
     {
         key: "portfolios",
@@ -36,7 +36,7 @@ const pills: Pill[] = [
         title: "Tu trabajo habla por ti.",
         desc: "Ranking que se mueve por impacto y consistencia.",
         accent: "rgba(76, 201, 240, 0.18)",
-        image: "/hero/portfolios.png.jpg",
+        image: "/hero/portfolios.jpg",
     },
 ];
 
