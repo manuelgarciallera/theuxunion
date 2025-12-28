@@ -13,6 +13,9 @@ type Pill = {
     image: string;
 };
 
+// ✅ Para que funcione en local (/) y en GitHub Pages (/theuxunion)
+const basePath = process.env.NODE_ENV === "production" ? "/theuxunion" : "";
+
 const pills: Pill[] = [
     {
         key: "merit",
@@ -20,7 +23,7 @@ const pills: Pill[] = [
         title: "Acceso por méritos, no por postureo.",
         desc: "Validamos formación, experiencia y portfolio verificable.",
         accent: "rgba(255, 59, 200, 0.20)",
-        image: "/hero/merit.png",
+        image: `${basePath}/hero/merit.png`,
     },
     {
         key: "nodes",
@@ -28,7 +31,7 @@ const pills: Pill[] = [
         title: "Conexiones con señal real.",
         desc: "Empresas y talento se encuentran por encaje, no por ruido.",
         accent: "rgba(61, 242, 255, 0.18)",
-        image: "/hero/nodes.png",
+        image: `${basePath}/hero/nodes.png`,
     },
     {
         key: "portfolios",
@@ -36,16 +39,13 @@ const pills: Pill[] = [
         title: "Tu trabajo habla por ti.",
         desc: "Ranking que se mueve por impacto y consistencia.",
         accent: "rgba(76, 201, 240, 0.18)",
-        image: "/hero/portfolios.png",
+        image: `${basePath}/hero/portfolios.png`,
     },
 ];
 
 export default function Hero() {
     const [active, setActive] = useState<PillKey>("merit");
-    const current = useMemo(
-        () => pills.find((p) => p.key === active)!,
-        [active]
-    );
+    const current = useMemo(() => pills.find((p) => p.key === active)!, [active]);
 
     return (
         <section id="home" className="relative hero-fade">
@@ -108,7 +108,7 @@ export default function Hero() {
                 {/* RIGHT */}
                 <div className="md:justify-self-end">
                     <div
-                        className="relative w-[440px] max-w-full h-[470px] rounded-[26px] border overflow-hidden"
+                        className="relative h-[470px] w-[440px] max-w-full overflow-hidden rounded-[26px] border"
                         style={{
                             borderColor: "var(--border-soft)",
                             boxShadow:
@@ -149,7 +149,7 @@ export default function Hero() {
                         />
 
                         {/* TEXTO ABAJO DEL TODO */}
-                        <div className="relative h-full flex flex-col justify-end p-6 pb-7">
+                        <div className="relative flex h-full flex-col justify-end p-6 pb-7">
                             <div className="max-w-[78%]">
                                 <div
                                     className="text-xl font-semibold leading-snug"
