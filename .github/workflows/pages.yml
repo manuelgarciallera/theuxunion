@@ -27,11 +27,15 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm ci
 
-      - name: Build (static export)
+      - name: Build
         run: npm run build
+
+      # Fuerza la generación del /out para Pages (clave)
+      - name: Export static site
+        run: npx next export -o out
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
