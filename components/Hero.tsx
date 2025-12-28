@@ -5,43 +5,44 @@ import { useMemo, useState } from "react";
 type PillKey = "merit" | "nodes" | "portfolios";
 
 type Pill = {
-    key: PillKey;
-    label: string;
-    title: string;
-    desc: string;
-    accent: string;
-    image: string;
+  key: PillKey;
+  label: string;
+  title: string;
+  desc: string;
+  accent: string;
+  image: string;
 };
 
 // ✅ Para que funcione en local (/) y en GitHub Pages (/theuxunion)
 const basePath = process.env.NODE_ENV === "production" ? "/theuxunion" : "";
 
 const pills: Pill[] = [
-    {
-        key: "merit",
-        label: "Merit Gate",
-        title: "Acceso por méritos, no por postureo.",
-        desc: "Validamos formación, experiencia y portfolio verificable.",
-        accent: "rgba(255, 59, 200, 0.20)",
-        image: `${basePath}/hero/merit.png`,
-    },
-    {
-        key: "nodes",
-        label: "Nodos",
-        title: "Conexiones con señal real.",
-        desc: "Empresas y talento se encuentran por encaje, no por ruido.",
-        accent: "rgba(61, 242, 255, 0.18)",
-        image: `${basePath}/hero/nodes.png`,
-    },
-    {
-        key: "portfolios",
-        label: "Portfolios",
-        title: "Tu trabajo habla por ti.",
-        desc: "Ranking que se mueve por impacto y consistencia.",
-        accent: "rgba(76, 201, 240, 0.18)",
-        image: `${basePath}/hero/portfolios.png`,
-    },
+  {
+    key: "merit",
+    label: "Merit Gate",
+    title: "Acceso por méritos, no por postureo.",
+    desc: "Validamos formación, experiencia y portfolio verificable.",
+    accent: "rgba(255, 59, 200, 0.20)",
+    image: `${basePath}/hero/merit.png`,
+  },
+  {
+    key: "nodes",
+    label: "Nodos",
+    title: "Conexiones con señal real.",
+    desc: "Empresas y talento se encuentran por encaje, no por ruido.",
+    accent: "rgba(61, 242, 255, 0.18)",
+    image: `${basePath}/hero/nodes.png`,
+  },
+  {
+    key: "portfolios",
+    label: "Portfolios",
+    title: "Tu trabajo habla por ti.",
+    desc: "Ranking que se mueve por impacto y consistencia.",
+    accent: "rgba(76, 201, 240, 0.18)",
+    image: `${basePath}/hero/portfolios.png`,
+  },
 ];
+
 
 export default function Hero() {
     const [active, setActive] = useState<PillKey>("merit");
