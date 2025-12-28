@@ -20,7 +20,7 @@ const pills: Pill[] = [
         title: "Acceso por méritos, no por postureo.",
         desc: "Validamos formación, experiencia y portfolio verificable.",
         accent: "rgba(255, 59, 200, 0.20)",
-        image: "/hero/merit.png.jpg",
+        image: "/hero/merit.jpg",
     },
     {
         key: "nodes",
@@ -28,7 +28,7 @@ const pills: Pill[] = [
         title: "Conexiones con señal real.",
         desc: "Empresas y talento se encuentran por encaje, no por ruido.",
         accent: "rgba(61, 242, 255, 0.18)",
-        image: "/hero/nodes.png.jpg",
+        image: "/hero/nodes.jpg",
     },
     {
         key: "portfolios",
@@ -36,7 +36,7 @@ const pills: Pill[] = [
         title: "Tu trabajo habla por ti.",
         desc: "Ranking que se mueve por impacto y consistencia.",
         accent: "rgba(76, 201, 240, 0.18)",
-        image: "/hero/portfolios.png.jpg",
+        image: "/hero/portfolios.jpg",
     },
 ];
 
@@ -115,7 +115,7 @@ export default function Hero() {
                                 "0 0 0 1px rgba(255,255,255,0.06), 0 25px 70px rgba(0,0,0,0.20)",
                         }}
                     >
-                        {/* IMAGEN */}
+                        {/* IMAGE */}
                         <div
                             className="absolute inset-0"
                             style={{
@@ -128,7 +128,7 @@ export default function Hero() {
                             }}
                         />
 
-                        {/* OSCURECIDO SOLO INFERIOR */}
+                        {/* DARKENED BOTTOM ONLY */}
                         <div
                             className="absolute inset-0"
                             style={{
@@ -137,7 +137,7 @@ export default function Hero() {
                             }}
                         />
 
-                        {/* COLOR BLEND SUAVE */}
+                        {/* SOFT COLOR BLEND */}
                         <div
                             className="absolute inset-0"
                             style={{
@@ -148,7 +148,7 @@ export default function Hero() {
                             }}
                         />
 
-                        {/* TEXTO ABAJO DEL TODO */}
+                        {/* TEXT AT THE BOTTOM */}
                         <div className="relative h-full flex flex-col justify-end p-6 pb-7">
                             <div className="max-w-[78%]">
                                 <div
