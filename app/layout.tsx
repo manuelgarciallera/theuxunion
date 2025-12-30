@@ -25,16 +25,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* NAVBAR FIXED */}
         <Navbar />
 
         {/* CONTENIDO DE LA PÁGINA */}
-        <main className="page-top-pad">
-          {children}
-        </main>
+        <main className="page-top-pad">{children}</main>
       </body>
     </html>
   );
