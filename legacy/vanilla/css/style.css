@@ -685,3 +685,22 @@ html[data-theme="light"] .notfound-overlay {
         padding: 34px;
     }
 }
+
+/* =========================
+   TRUSTED · TEXTO (SIN LOGOS)
+   ========================= */
+
+.tux-trusted-text {
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.tux-trusted-card:hover .tux-trusted-text,
+.tux-trusted-card:focus-visible .tux-trusted-text {
+    opacity: 1;
+    transform: translateY(-1px);
+}

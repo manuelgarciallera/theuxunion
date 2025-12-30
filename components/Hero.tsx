@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
 import Link from "next/link";
 
-type PillKey = "merit" | "nodes" | "portfolios";
+type PillKey = "merit" | "nodes" | "portfolios" | "jobs";
 
 type Pill = {
   key: PillKey;
@@ -14,8 +14,12 @@ type Pill = {
   image: string;
 };
 
-// ✅ Para que funcione en local (/) y en GitHub Pages (/theuxunion)
-const basePath = process.env.NODE_ENV === "production" ? "/theuxunion" : "";
+const BASE = process.env.NODE_ENV === "production" ? "/theuxunion" : "";
+
+function asset(path: string) {
+  const clean = path.startsWith("/") ? path : `/${path}`;
+  return `${BASE}${clean}`;
+}
 
 const pills: Pill[] = [
   {
@@ -24,7 +28,7 @@ const pills: Pill[] = [
     title: "Acceso por méritos, no por postureo.",
     desc: "Validamos formación, experiencia y portfolio verificable.",
     accent: "rgba(255, 59, 200, 0.20)",
-    image: `${basePath}/hero/merit.png`,
+    image: asset("/hero/merit.png"),
   },
   {
     key: "nodes",
@@ -32,7 +36,7 @@ const pills: Pill[] = [
     title: "Conexiones con señal real.",
     desc: "Empresas y talento se encuentran por encaje, no por ruido.",
     accent: "rgba(61, 242, 255, 0.18)",
-    image: `${basePath}/hero/nodes.png`,
+    image: asset("/hero/nodes.png"),
   },
   {
     key: "portfolios",
@@ -40,7 +44,15 @@ const pills: Pill[] = [
     title: "Tu trabajo habla por ti.",
     desc: "Ranking que se mueve por impacto y consistencia.",
     accent: "rgba(76, 201, 240, 0.18)",
-    image: `${basePath}/hero/portfolios.png`,
+    image: asset("/hero/portfolios.png"),
+  },
+  {
+    key: "jobs",
+    label: "Ofertas laborales",
+    title: "Oportunidades con contexto.",
+    desc: "Encuentra ofertas alineadas con tu perfil y reputación real.",
+    accent: "rgba(61, 242, 255, 0.14)",
+    image: asset("/hero/OfertasLab.jpg"),
   },
 ];
 
@@ -48,10 +60,16 @@ export default function Hero() {
   const [active, setActive] = useState<PillKey>("merit");
   const current = useMemo(() => pills.find((p) => p.key === active)!, [active]);
 
+  const goNext = useCallback(() => {
+    const idx = pills.findIndex((p) => p.key === active);
+    const next = pills[(idx + 1) % pills.length].key;
+    setActive(next);
+  }, [active]);
+
   return (
     <section id="home" className="relative hero-fade">
       <div className="hero-content mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 pb-10 pt-16 md:grid-cols-2 md:items-start">
-        {/* LEFT */}
+        {/* Left copy */}
         <div className="pt-6">
           <div
             className="text-xs tracking-[0.22em]"
@@ -68,16 +86,12 @@ export default function Hero() {
             <span style={{ color: "var(--text-primary)" }}>se conectan</span>
           </h1>
 
-          <p
-            className="mt-6 max-w-xl text-lg leading-relaxed"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <p className="mt-6 max-w-xl text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             Una red de nodos donde tu ranking se construye con experiencia, formación y
             portfolio verificable. Entra por méritos, crece por impacto.
           </p>
 
           <div className="mt-10 flex items-center gap-4">
-            {/* ✅ Botón que navega a /register */}
             <Link
               href="/register"
               className="tux-hover-border-magenta inline-flex items-center justify-center rounded-xl border px-6 py-3 text-sm font-semibold text-white transition"
@@ -91,7 +105,6 @@ export default function Hero() {
               Crear cuenta
             </Link>
 
-            {/* De momento, lo dejamos como anchor interno */}
             <a
               href="#demo"
               className="inline-flex items-center justify-center rounded-xl border px-6 py-3 text-sm font-semibold"
@@ -106,17 +119,20 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* RIGHT */}
+        {/* Right panel */}
         <div className="md:justify-self-end">
-          <div
-            className="relative h-[470px] w-[440px] max-w-full overflow-hidden rounded-[26px] border"
+          <button
+            type="button"
+            onClick={goNext}
+            className="tux-hero-media relative h-[470px] w-[440px] max-w-full overflow-hidden rounded-[26px] border text-left"
             style={{
               borderColor: "var(--border-soft)",
               boxShadow:
                 "0 0 0 1px rgba(255,255,255,0.06), 0 25px 70px rgba(0,0,0,0.20)",
             }}
+            aria-label="Cambiar vista (siguiente módulo)"
+            title="Siguiente vista"
           >
-            {/* IMAGEN */}
             <div
               className="absolute inset-0"
               style={{
@@ -129,16 +145,14 @@ export default function Hero() {
               }}
             />
 
-            {/* OSCURECIDO SOLO INFERIOR */}
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(5,11,26,0.00) 0%, rgba(5,11,26,0.15) 60%, rgba(5,11,26,0.55) 85%, rgba(5,11,26,0.88) 100%)",
+                  "linear-gradient(to top, rgba(5,11,26,0.72) 0%, rgba(5,11,26,0.34) 38%, rgba(5,11,26,0.10) 62%, rgba(5,11,26,0.00) 100%)",
               }}
             />
 
-            {/* COLOR BLEND SUAVE */}
             <div
               className="absolute inset-0"
               style={{
@@ -149,42 +163,34 @@ export default function Hero() {
               }}
             />
 
-            {/* TEXTO ABAJO DEL TODO */}
+            {/* ✅ Texto A LA IZQUIERDA + leve opacidad */}
             <div className="relative flex h-full flex-col justify-end p-6 pb-7">
-              <div className="max-w-[78%]">
-                <div
-                  className="text-xl font-semibold leading-snug"
-                  style={{ color: "var(--text-primary)" }}
-                >
+              <div className="max-w-[82%] text-left">
+                <div className="text-xl font-semibold leading-snug" style={{ color: "rgba(230,241,255,0.92)" }}>
                   {current.title}
                 </div>
-                <div
-                  className="mt-2 text-base leading-snug"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+
+                <div className="mt-2 text-base leading-snug" style={{ color: "rgba(159,179,200,0.86)" }}>
                   {current.desc}
                 </div>
               </div>
             </div>
-          </div>
+          </button>
 
-          {/* PILLS */}
           <div className="mt-5 flex flex-wrap gap-3">
             {pills.map((p) => (
               <button
                 key={p.key}
                 type="button"
                 onClick={() => setActive(p.key)}
-                className={`tux-pill rounded-full px-4 py-2 text-sm ${
-                  p.key === active ? "is-active" : ""
-                }`}
+                className={`tux-pill rounded-full px-4 py-2 text-sm ${p.key === active ? "is-active" : ""}`}
+                aria-pressed={p.key === active}
               >
                 {p.label}
               </button>
             ))}
           </div>
 
-          {/* TIP */}
           <div
             className="mt-4 w-[440px] max-w-full rounded-2xl border p-4 text-sm backdrop-blur"
             style={{
