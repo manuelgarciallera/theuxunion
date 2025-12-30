@@ -280,6 +280,8 @@ export default function RegisterPage() {
                                         color: isValid ? "var(--bg-main)" : "color-mix(in srgb, var(--bg-main) 55%, transparent)",
                                         cursor: isValid ? "pointer" : "not-allowed",
                                     }}
+                                    disabled={!isValid}
+                                    aria-disabled={!isValid}
                                 >
                                     Crear cuenta
                                 </button>
