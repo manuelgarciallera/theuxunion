@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import validator from "validator";
 
 type FormState = {
     fullName: string;
@@ -40,7 +41,7 @@ export default function RegisterPage() {
 
         if (!form.fullName.trim()) e.fullName = "Indica tu nombre.";
         if (!form.email.trim()) e.email = "El email es obligatorio.";
-        else if (!/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Introduce un email válido.";
+        else if (!validator.isEmail(form.email)) e.email = "Introduce un email válido.";
 
         if (!form.password) e.password = "La contraseña es obligatoria.";
         else if (form.password.length < 8) e.password = "Mínimo 8 caracteres.";
